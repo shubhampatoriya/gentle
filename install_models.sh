@@ -3,14 +3,15 @@
 set -e
 
 VERSION="0.03"
-
+filename="kaldi-models-$VERSION.zip"
+echo $filename
 download_models() {
 	local version="$1"
-	local filename="kaldi-models-$version.zip"
+	local filename=$filename
 	local url="https://lowerquality.com/gentle/$filename"
-	wget -O $filename $url
+	curl -O $filename $url --insecure
 	unzip $filename
-	rm $filename
+	# rm $filename
 }
 
 echo "Downloading models for v$VERSION..." 1>&2
